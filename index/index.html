@@ -51,9 +51,23 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             cursor: pointer;
         }
+        
+        @media (max-width: 768px) {
+            .banner .logo {
+                font-size: 28px;
+                letter-spacing: 3px;
+            }
+        }
         .search-box {
             width: 100%;
             max-width: 500px;
+        }
+        
+        @media (max-width: 768px) {
+            .search-box {
+                max-width: 100%;
+                padding: 0 10px;
+            }
         }
         .search-box input {
             padding: 12px 20px;
@@ -63,6 +77,14 @@
             font-size: 15px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             transition: 0.3s;
+            box-sizing: border-box;
+        }
+        
+        @media (max-width: 768px) {
+            .search-box input {
+                font-size: 14px;
+                padding: 10px 16px;
+            }
         }
         .search-box input:focus {
             outline: none;
@@ -79,6 +101,14 @@
             justify-content: center;
             flex-wrap: wrap;
             animation: fadeInUp 0.7s ease-out 0.2s both;
+        }
+        
+        @media (max-width: 768px) {
+            .categories {
+                gap: 15px;
+                padding: 15px 20px;
+                font-size: 16px;
+            }
         }
         
         @keyframes fadeInUp {
@@ -109,6 +139,20 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: 1fr;
+                padding: 20px 15px;
+                gap: 20px;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         .product-card {
             border: 1px solid #ddd;
@@ -152,6 +196,12 @@
             border-radius: 8px;
             transition: transform 0.4s ease;
         }
+        
+        @media (max-width: 768px) {
+            .product-card img {
+                height: 250px;
+            }
+        }
         .product-card:hover img {
             transform: scale(1.15);
         }
@@ -164,10 +214,23 @@
             align-items: center;
             justify-content: center;
         }
+        
+        @media (max-width: 768px) {
+            .product-name {
+                font-size: 16px;
+                min-height: 40px;
+            }
+        }
         .price {
             color: #009900;
             font-size: 16px;
             font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .price {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
