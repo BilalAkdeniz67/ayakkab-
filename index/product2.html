@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adidas Ultraboost - Suki</title>
+    <link rel="stylesheet" href="ayakkabi.css">
+</head>
+<body>
+
+    <div class="banner">
+        <div class="logo"><a href="index.html">SUKI</a></div>
+    </div>
+
+    <div class="detail-page">
+        <a href="index.html" class="back-button">← Ana Sayfaya Dön</a>
+        <div class="detail-content">
+            <div class="image-section">
+                <img class="detail-image" 
+                     src="Ultraboost_5_Ayakkabi_Siyah_JH9633_01_standard-Photoroom.png" 
+                     alt="Adidas Ultraboost" 
+                     onclick="openZoom()" />
+                <div class="zoom-icon">🔍 Yakınlaştır</div>
+            </div>
+            <div class="detail-info">
+                <h1>Adidas Ultraboost</h1>
+                <div class="detail-price">₺3.199</div>
+                <div class="detail-description">
+                    Adidas Ultraboost, enerji geri dönüşüm teknolojisi ile koşu performansınızı artırır. 
+                    Boost ara taban, her adımda maksimum enerji geri dönüşü sağlar. 
+                    Primeknit üst yapısı ile ayağınıza özel uyum sunar.
+                    <br><br>
+                    <strong>Özellikler:</strong>
+                    <ul>
+                        <li>Boost enerji geri dönüşüm teknolojisi</li>
+                        <li>Primeknit örgü üst yapı</li>
+                        <li>Continental™ kauçuk dış taban</li>
+                        <li>Torsion System destek sistemi</li>
+                    </ul>
+                </div>
+                
+                <div class="size-selector">
+                    <h3>Beden Seçin:</h3>
+                    <div class="size-buttons">
+                        <button class="size-btn" onclick="selectSize(this)">38</button>
+                        <button class="size-btn" onclick="selectSize(this)">39</button>
+                        <button class="size-btn" onclick="selectSize(this)">40</button>
+                        <button class="size-btn" onclick="selectSize(this)">41</button>
+                        <button class="size-btn" onclick="selectSize(this)">42</button>
+                        <button class="size-btn" onclick="selectSize(this)">43</button>
+                        <button class="size-btn" onclick="selectSize(this)">44</button>
+                    </div>
+                </div>
+
+                <button class="add-to-cart" onclick="addToCart()">Sepete Ekle</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="zoomModal" class="zoom-modal" onclick="closeZoom()">
+        <span class="close-zoom">&times;</span>
+        <img src="Ultraboost_5_Ayakkabi_Siyah_JH9633_01_standard-Photoroom.png" alt="Adidas Ultraboost" />
+    </div>
+
+    <script>
+        let selectedSize = null;
+
+        function selectSize(btn) {
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedSize = btn.textContent;
+        }
+
+        function addToCart() {
+            if (!selectedSize) {
+                alert('Lütfen bir beden seçin!');
+                return;
+            }
+            alert(`Adidas Ultraboost - Beden ${selectedSize} sepete eklendi!`);
+        }
+
+        function openZoom() {
+            document.getElementById('zoomModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeZoom() {
+            document.getElementById('zoomModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeZoom();
+            }
+        });
+    </script>
+
+</body>
+</html>
