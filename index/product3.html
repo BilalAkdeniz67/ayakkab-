@@ -14,21 +14,26 @@
 
     <div class="detail-page">
         <a href="index.html" class="back-button">← Ana Sayfaya Dön</a>
+
         <div class="detail-content">
+
+            <!-- Görsel -->
             <div class="image-section">
-                <img class="detail-image" 
-                     src="36527709_1-Photoroom.png" 
-                     alt="Puma Runner" 
+                <img class="detail-image"
+                     src="36527709_1-Photoroom.png"
+                     alt="Puma Runner"
                      onclick="openZoom()" />
                 <div class="zoom-icon">🔍 Yakınlaştır</div>
             </div>
+
+            <!-- Bilgi -->
             <div class="detail-info">
                 <h1>Puma Runner</h1>
                 <div class="detail-price">₺1.899</div>
+
                 <div class="detail-description">
-                    Puma Runner, hafif yapısı ve rahat tasarımı ile günlük koşularınız için mükemmeldir. 
-                    Dayanıklı dış taban ve nefes alabilen malzemesi sayesinde uzun süreli konfor sağlar. 
-                    Şık ve sportif görünümüyle her ortama uyum sağlar.
+                    Puma Runner, hafif yapısı ve rahat tasarımı ile günlük koşularınız için mükemmeldir.
+                    Dayanıklı dış taban ve nefes alabilen malzemesi sayesinde uzun süreli konfor sağlar.
                     <br><br>
                     <strong>Özellikler:</strong>
                     <ul>
@@ -38,7 +43,8 @@
                         <li>Ergonomik ayak tabanı desteği</li>
                     </ul>
                 </div>
-                
+
+                <!-- BEDEN -->
                 <div class="size-selector">
                     <h3>Beden Seçin:</h3>
                     <div class="size-buttons">
@@ -52,31 +58,27 @@
                     </div>
                 </div>
 
-                <button class="add-to-cart" onclick="addToCart()">Sepete Ekle</button>
+                <!-- SHOPIFY BUTONU -->
+                <div id="product-component-puma" style="margin-top: 20px;"></div>
+
             </div>
         </div>
     </div>
 
+    <!-- Zoom -->
     <div id="zoomModal" class="zoom-modal" onclick="closeZoom()">
         <span class="close-zoom">&times;</span>
-        <img src="36527709_1-Photoroom.png" alt="Puma Runner" />
+        <img src="36527709_1-Photoroom.png" />
     </div>
 
     <script>
         let selectedSize = null;
 
         function selectSize(btn) {
-            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+            document.querySelectorAll('.size-btn')
+                .forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
             selectedSize = btn.textContent;
-        }
-
-        function addToCart() {
-            if (!selectedSize) {
-                alert('Lütfen bir beden seçin!');
-                return;
-            }
-            alert(`Puma Runner - Beden ${selectedSize} sepete eklendi!`);
         }
 
         function openZoom() {
@@ -88,12 +90,73 @@
             document.getElementById('zoomModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
+    </script>
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeZoom();
-            }
+    <!-- SHOPIFY BUY BUTTON KODU -->
+    <script type="text/javascript">
+    (function () {
+      var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+      if (window.ShopifyBuy) {
+        if (window.ShopifyBuy.UI) {
+          ShopifyBuyInit();
+        } else {
+          loadScript();
+        }
+      } else {
+        loadScript();
+      }
+
+      function loadScript() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = scriptURL;
+        document.head.appendChild(script);
+        script.onload = ShopifyBuyInit;
+      }
+
+      function ShopifyBuyInit() {
+        var client = ShopifyBuy.buildClient({
+          domain: 'yhbi1u-gz.myshopify.com',
+          storefrontAccessToken: '8864fc505b7326c337c5ab5c72e9c418',
         });
+
+        ShopifyBuy.UI.onReady(client).then(function (ui) {
+          ui.createComponent('product', {
+            id: '10469582176561',
+            node: document.getElementById('product-component-puma'),
+            moneyFormat: '%7B%7Bamount%7D%7DTL',
+            options: {
+              product: {
+                contents: {
+                  img: false,
+                  imgWithCarousel: false,
+                  title: false,
+                  price: false,
+                  description: false,
+                  button: true,
+                  buttonWithQuantity: false
+                },
+                styles: {
+                  button: {
+                    "font-family": "Oxygen, sans-serif",
+                    "font-weight": "bold",
+                    "background-color": "#000",
+                    "color": "#fff",
+                    "padding": "14px 50px",
+                    "border-radius": "12px",
+                    "width": "100%",
+                    "font-size": "18px",
+                    "margin-top": "20px",
+                    ":hover": { "background-color": "#111" }
+                  }
+                },
+                text: { button: "Satın Al" }
+              }
+            }
+          });
+        });
+      }
+    })();
     </script>
 
 </body>
