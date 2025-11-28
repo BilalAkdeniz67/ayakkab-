@@ -14,21 +14,26 @@
 
     <div class="detail-page">
         <a href="index.html" class="back-button">← Ana Sayfaya Dön</a>
+
         <div class="detail-content">
+            
+            <!-- Görsel Alanı -->
             <div class="image-section">
-                <img class="detail-image" 
-                     src="Ultraboost_5_Ayakkabi_Siyah_JH9633_01_standard-Photoroom.png" 
-                     alt="Adidas Ultraboost" 
+                <img class="detail-image"
+                     src="Ultraboost_5_Ayakkabi_Siyah_JH9633_01_standard-Photoroom.png"
+                     alt="Adidas Ultraboost"
                      onclick="openZoom()" />
                 <div class="zoom-icon">🔍 Yakınlaştır</div>
             </div>
+
+            <!-- Bilgi Alanı -->
             <div class="detail-info">
                 <h1>Adidas Ultraboost</h1>
                 <div class="detail-price">₺3.199</div>
+
                 <div class="detail-description">
-                    Adidas Ultraboost, enerji geri dönüşüm teknolojisi ile koşu performansınızı artırır. 
-                    Boost ara taban, her adımda maksimum enerji geri dönüşü sağlar. 
-                    Primeknit üst yapısı ile ayağınıza özel uyum sunar.
+                    Adidas Ultraboost, enerji geri dönüşüm teknolojisi ile koşu performansınızı artırır.
+                    Boost ara taban, her adımda maksimum enerji geri dönüşü sağlar.
                     <br><br>
                     <strong>Özellikler:</strong>
                     <ul>
@@ -38,7 +43,8 @@
                         <li>Torsion System destek sistemi</li>
                     </ul>
                 </div>
-                
+
+                <!-- BEDEN SEÇİMİ -->
                 <div class="size-selector">
                     <h3>Beden Seçin:</h3>
                     <div class="size-buttons">
@@ -52,31 +58,27 @@
                     </div>
                 </div>
 
-                <button class="add-to-cart" onclick="addToCart()">Sepete Ekle</button>
+                <!-- SHOPIFY BUY BUTTON -->
+                <div id="product-component-ultraboost" style="margin-top: 20px;"></div>
+
             </div>
         </div>
     </div>
 
+    <!-- Zoom Modal -->
     <div id="zoomModal" class="zoom-modal" onclick="closeZoom()">
         <span class="close-zoom">&times;</span>
-        <img src="Ultraboost_5_Ayakkabi_Siyah_JH9633_01_standard-Photoroom.png" alt="Adidas Ultraboost" />
+        <img src="Ultraboost_5_Ayakkabi_Siyah_JH9633_01_standard-Photoroom.png" />
     </div>
 
     <script>
         let selectedSize = null;
 
         function selectSize(btn) {
-            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+            document.querySelectorAll('.size-btn')
+                .forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
             selectedSize = btn.textContent;
-        }
-
-        function addToCart() {
-            if (!selectedSize) {
-                alert('Lütfen bir beden seçin!');
-                return;
-            }
-            alert(`Adidas Ultraboost - Beden ${selectedSize} sepete eklendi!`);
         }
 
         function openZoom() {
@@ -88,12 +90,73 @@
             document.getElementById('zoomModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
+    </script>
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeZoom();
-            }
+    <!-- SHOPIFY BUY BUTTON KODU -->
+    <script type="text/javascript">
+    (function () {
+      var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+      if (window.ShopifyBuy) {
+        if (window.ShopifyBuy.UI) {
+          ShopifyBuyInit();
+        } else {
+          loadScript();
+        }
+      } else {
+        loadScript();
+      }
+
+      function loadScript() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = scriptURL;
+        document.head.appendChild(script);
+        script.onload = ShopifyBuyInit;
+      }
+
+      function ShopifyBuyInit() {
+        var client = ShopifyBuy.buildClient({
+          domain: 'yhbi1u-gz.myshopify.com',
+          storefrontAccessToken: '8864fc505b7326c337c5ab5c72e9c418',
         });
+
+        ShopifyBuy.UI.onReady(client).then(function (ui) {
+          ui.createComponent('product', {
+            id: '10469575819569',
+            node: document.getElementById('product-component-ultraboost'),
+            moneyFormat: '%7B%7Bamount%7D%7DTL',
+            options: {
+              product: {
+                contents: {
+                  img: false,
+                  imgWithCarousel: false,
+                  title: false,
+                  price: false,
+                  description: false,
+                  button: true,
+                  buttonWithQuantity: false
+                },
+                styles: {
+                  button: {
+                    "font-family": "Oxygen, sans-serif",
+                    "font-weight": "bold",
+                    "background-color": "#000",
+                    "color": "#fff",
+                    "padding": "14px 50px",
+                    "border-radius": "12px",
+                    "width": "100%",
+                    "font-size": "18px",
+                    "margin-top": "20px",
+                    ":hover": { "background-color": "#111" }
+                  }
+                },
+                text: { button: "Satın Al" }
+              }
+            }
+          });
+        });
+      }
+    })();
     </script>
 
 </body>
