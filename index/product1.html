@@ -6,99 +6,132 @@
     <title>Nike Air Max - Suki</title>
     <link rel="stylesheet" href="ayakkabi.css"> 
 </head>
+
 <body>
 
-    <!-- Üst Banner -->
+    <!-- Banner -->
     <div class="banner">
         <div class="logo"><a href="index.html">SUKI</a></div>
     </div>
 
-    <!-- Detay Sayfası -->
+    <!-- Ürün Detay -->
     <div class="detail-page">
         <a href="index.html" class="back-button">← Ana Sayfaya Dön</a>
+
         <div class="detail-content">
+
+            <!-- Ürün Fotoğrafı -->
             <div class="image-section">
                 <img id="mainImage" class="detail-image" 
                      src="b17263ec-73b2-4886-b987-b03e5bc20ba9_size3840x3840_cropCenter-Photoroom.png" 
-                     alt="Nike Air Max" 
                      onclick="openZoom()" />
                 <div class="zoom-icon">🔍 Yakınlaştır</div>
             </div>
+
+            <!-- Ürün Bilgileri -->
             <div class="detail-info">
                 <h1>Nike Air Max</h1>
                 <div class="detail-price">₺2.499</div>
-                <div class="detail-description">
-                    Nike Air Max, maksimum konfor ve stil sunan klasik bir spor ayakkabıdır. 
-                    Görünür Air yastıklama teknolojisi sayesinde her adımda üstün rahatlık sağlar. 
-                    Günlük kullanım ve spor aktiviteleri için ideal bir seçimdir.
-                    <br><br>
-                    <strong>Özellikler:</strong>
-                    <ul>
-                        <li>Görünür Air yastıklama teknolojisi</li>
-                        <li>Nefes alabilen mesh üst yapı</li>
-                        <li>Dayanıklı kauçuk dış taban</li>
-                        <li>Klasik ve modern tasarım</li>
-                    </ul>
-                </div>
-                
+
+                <p class="detail-description">
+                    Nike Air Max günlük kullanım için maksimum konfor ve şıklık sunar.
+                </p>
+
+                <!-- BEDEN SEÇİMİ -->
                 <div class="size-selector">
                     <h3>Beden Seçin:</h3>
                     <div class="size-buttons">
-                        <button class="size-btn" onclick="selectSize(this)">38</button>
-                        <button class="size-btn" onclick="selectSize(this)">39</button>
-                        <button class="size-btn" onclick="selectSize(this)">40</button>
-                        <button class="size-btn" onclick="selectSize(this)">41</button>
-                        <button class="size-btn" onclick="selectSize(this)">42</button>
-                        <button class="size-btn" onclick="selectSize(this)">43</button>
-                        <button class="size-btn" onclick="selectSize(this)">44</button>
+                        <button class="size-btn">38</button>
+                        <button class="size-btn">39</button>
+                        <button class="size-btn">40</button>
+                        <button class="size-btn">41</button>
+                        <button class="size-btn">42</button>
+                        <button class="size-btn">43</button>
+                        <button class="size-btn">44</button>
                     </div>
                 </div>
 
-                <button class="add-to-cart" onclick="addToCart()">Sepete Ekle</button>
+                <!-- SHOPIFY BUTONU BURAYA -->
+                <div id="product-component-1764355802494" class="shopify-buy-wrapper"></div>
+
             </div>
         </div>
     </div>
 
-    <!-- Zoom Modal -->
+    <!-- Zoom -->
     <div id="zoomModal" class="zoom-modal" onclick="closeZoom()">
         <span class="close-zoom">&times;</span>
-        <img id="zoomedImage" src="b17263ec-73b2-4886-b987-b03e5bc20ba9_size3840x3840_cropCenter-Photoroom.png" alt="Nike Air Max" />
+        <img id="zoomedImage"
+             src="b17263ec-73b2-4886-b987-b03e5bc20ba9_size3840x3840_cropCenter-Photoroom.png" />
     </div>
 
-    <script>
-        let selectedSize = null;
-
-        function selectSize(btn) {
-            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            selectedSize = btn.textContent;
+<!-- Shopify Buy Button Script (SENİN VERDİĞİN KOD — AYNI) -->
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'yhbi1u-gz.myshopify.com',
+      storefrontAccessToken: '8864fc505b7326c337c5ab5c72e9c418',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      
+      ui.createComponent('product', {
+        id: '10469506548017',
+        node: document.getElementById('product-component-1764355802494'),
+        moneyFormat: '%7B%7Bamount%7D%7DTL',
+        options: {
+          product: {
+            contents: {
+              img: false,
+              imgWithCarousel: false,
+              title: false,
+              price: false,
+              description: false,
+              button: true,
+              buttonWithQuantity: false
+            },
+            styles: {
+              button: {
+                "font-family": "Oxygen, sans-serif",
+                "font-weight": "bold",
+                "background-color": "#000",
+                "color": "#fff",
+                "padding": "14px 50px",
+                "border-radius": "12px",
+                "width": "100%",
+                "font-size": "18px",
+                "margin-top": "20px",
+                ":hover": { "background-color": "#111" }
+              }
+            },
+            text: { button: "Satın Al" }
+          }
         }
+      });
 
-        function addToCart() {
-            if (!selectedSize) {
-                alert('Lütfen bir beden seçin!');
-                return;
-            }
-            alert(`Nike Air Max - Beden ${selectedSize} sepete eklendi!`);
-        }
-
-        function openZoom() {
-            document.getElementById('zoomModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeZoom() {
-            document.getElementById('zoomModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // ESC tuşu ile kapatma
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeZoom();
-            }
-        });
-    </script>
+    });
+  }
+})();
+/*]]>*/
+</script>
 
 </body>
 </html>
